@@ -11,3 +11,5 @@ Used stuff marketplace (clothes) like an online thrift store.
 2) SELL
 
 Also need a login page.
+
+ABout US page
