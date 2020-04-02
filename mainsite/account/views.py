@@ -7,7 +7,7 @@ from django.db import IntegrityError
 from . import forms
 from django.urls import reverse
 
-# Create your views here.
+# Create your views here...
 
 @login_required
 def info(request):
