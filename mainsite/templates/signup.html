@@ -1,0 +1,27 @@
+<h1>Create User</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>
+      Username: <input type="text" name="username" value="{{form.data.username}}" />
+      {{ form.username.errors }}
+    </p>
+    <p>
+      Email: <input type="text" name="email" value="{{form.data.email}}" />
+      {{ form.email.errors }}
+    </p>
+    <p>
+      Age: <input type="text" name="age" value="{{form.data.age}}" />
+      {{ form.age.errors }}
+    </p>
+    <p>
+      Create Password: <input type="password" name="password" />
+      {{ form.password.errors }}
+    </p>
+    <p>
+      Confirm Password: <input type="password" name="password_confirm" />
+      {{ form.password_confirm.errors }}
+    </p>
+    <p>
+      <input type="submit" value="Create" />
+    </p>
+</form>
