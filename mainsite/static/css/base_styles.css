@@ -1,0 +1,111 @@
+body {
+	padding-left: 15px;
+	background-color: white;
+	font-family: 'Lobster';
+	font-size: 18px;
+}
+
+nav.base {
+    display: block;
+    margin: 8px 22px 8px 22px;
+    overflow: hidden;
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+}
+
+ul.basenav {
+	padding: 10px 16px;
+	list-style: none;
+}
+
+ul.basenav li {
+	display: inline;
+	font-size: 20px;
+}
+
+ul.basenav li+li:before {
+  padding: 8px;
+  color: black;
+  content: "|";
+}
+
+.header-area{
+  height: 280px;
+  position: relative;
+  width: 100%;
+  background-color: #e8f4f8;
+}
+
+.header-words{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.top-filter-head{
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.head{
+  font-size: 18px;
+}
+
+li{
+  list-style-type: none;
+}
+
+.footer-area{
+	background-color: #00004d;
+	color: white;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+}
+
+.footer-words{
+  margin-top: 20px;
+}
+
+.footer-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: grey;
+}
+
+a:hover {
+  color: turquoise;
+}
+
+a:active {
+  color:white;
+}
+
+.ft-link{
+  color: black;
+}
+
+.ft-link:visited{
+  color: grey;
+}
+
+.ft-link:hover{
+  color: turquoise;
+}
+
+.footer-sub{
+  color: black;
+}
