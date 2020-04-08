@@ -1,93 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %} Shop {% endblock %}
 {% block content %}
 <!DOCTYPE html>
 <html>
 
-<!-- style should be in separate css in static folder but load static not working for some reason -->
-<style> 
+<!-- style should be in separate css in static folder but load static not working for some reason -> fixed! -->
 
- .header-area{
-  height: 280px;
-  position: relative;
-  width: 100%;
-  background-color: #e8f4f8;
-}
-
-.header-words{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.top-filter-head{
-  margin-top: 20px;
-  font-size: 20px;
-}
-
-.head{
-  font-size: 18px;
-}
-
-li{
-  list-style-type: none;
-}
-
-.footer-area{
-	background-color: #00004d;
-	color: white;
-  margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
-}
-
-.footer-words{
-  margin-top: 20px;
-}
-
-.footer-list{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.ft-link{
-  color: #BDBDBD;
-}
-
-.ft-link:visited{
-  color: #BDBDBD;
-}
-
-.ft-link:hover{
-  color: white;
-}
-
-.footer-sub{
-  color: #BDBDBD;
-}
-  
-</style> 
 
 <!-- HEADER: CONTAINS CSS PATH -->
 
 <head>	
-  <!-- start bootstrap. Should this be part of a different template? -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- end bootstrap header-->
+  <!-- bootstrap moved to base.html-->
 
   <!-- could use a better title-->
   <title>Buyer's HomePage</title>
 
-  <!-- this could also just use base_styles.css, but ideally buy/style.css will include the stylecode from above-->
-  <link rel="stylesheet" href="{% static 'buy/style.css' %}"> 
+  <!-- this could also just use base_styles.css, but ideally buy/style.css will include the stylecode from above
+        -> for now, I have merged all the css together into base_styles.css-->
+  <link rel="stylesheet" href="{% static 'css/base_styles.css' %}"> 
 </head>
 
 <!-- NAVBAR -->
@@ -104,7 +35,7 @@ li{
                   <li class="nav-item"><a class="nav-link" href="cart">Your Cart</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout">Checkout Product</a></li>
                 </ul>
-			  </li>
+			        </li>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Sell Products</a>
                 <ul class="dropdown-menu">
@@ -313,10 +244,7 @@ li{
 	</footer>
 </body>
 
-<!-- rest of bootstrap code also could be part of a different template? -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- rest of bootstrap code also could be part of a different template? // moved to base.html -->
 
 <!-- range slider code for price -->
 <script> 
