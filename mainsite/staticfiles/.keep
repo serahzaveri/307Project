@@ -1,0 +1,2 @@
+Display staticfiles folder. This folder is only for production purposes to make sure collectstatic works.
+It should copy all static files from the project into this folder).
