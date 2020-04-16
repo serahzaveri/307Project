@@ -1,4 +1,11 @@
-<h1>Login</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="header-area">
+  <div class="text-center">
+    <h1 class="header-words">Login</h1>
+  </div>
+</div>
 <div>{{ form.non_field_errors }}</div>
 <form action="" method="post">
     {% csrf_token %}
@@ -13,4 +20,5 @@
       <input type="submit" value="Login" />
     </p>
 </form>
+{% endblock %}
 

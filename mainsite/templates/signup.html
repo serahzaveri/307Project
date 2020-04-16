@@ -1,4 +1,11 @@
-<h1>Create User</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="header-area">
+  <div class="text-center">
+    <h1 class="header-words">Register</h1>
+  </div>
+</div>
 <form action="" method="post">
     {% csrf_token %}
     <p>
@@ -25,3 +32,4 @@
       <input type="submit" value="Create" />
     </p>
 </form>
+{% endblock %}

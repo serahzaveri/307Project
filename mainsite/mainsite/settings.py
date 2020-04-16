@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Static root, where static files are loaded from (and where collectstatic command will copy files into)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# necessary to load css properly (unsure why this is needed, it seems to define all static directories to look for files in)
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+# for development purposes
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
