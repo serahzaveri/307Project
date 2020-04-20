@@ -17,8 +17,14 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.contrib.staticfiles.views import serve
+from django.views.decorators.cache import cache_control
+from django.conf import settings
 
 urlpatterns = [
-    path('account/',include('account.urls')),
+    path('',include('account.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT, view=cache_control(no_cache=True, must_revalidate=True)(serve))

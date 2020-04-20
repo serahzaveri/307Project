@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link href="{% static 'css/base_styles.css' %}" rel="stylesheet">
+
+<style type="text/css">
+	.card{
+		max-width: 500px;
+	}
+	.card-body{
+		padding: 20px;
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+
+		<!-- Item Post -->
+		<div class="card m-auto">
+			<img class="card-img-top" src="{{item_post.image.url}}">
+			<div class="card-body mt-2 mb-2">
+			  <h2 class="card-title">{{item_post.title}}</h2>
+			  <p class="card-text">{{item_post.price|safe}}</p>
+			  <p class="card-text">{{item_post.inventory|safe}}</p>
+			  <p class="card-text">{{item_post.body|safe}}</p>
+			  {% if item_post.author == request.user %}
+			  	<a href="{% url 'edit' item_post.slug %}" class="btn btn-primary">Update</a>
+			  {% endif %}
+			</div>
+			<div class="card-footer text-muted">
+			  Updated on {{item_post.date_updated}} by {{item_post.author}}
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+
+{% endblock content %}

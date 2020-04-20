@@ -17,7 +17,21 @@
       {{ form.password.errors }}
     </p>
     <p>
+      {% if form.errors %}
+        <div class="alert alert-danger">Your username and password didn't match. Please try again.</div>
+          {% else %}
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <div class="alert alert-info">Your account doesn't have access to this page. To proceed, please login with an account that has access.</div>
+                {% else %}
+                    <div class="alert alert-info">Please login to see this page.</div>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+    </p>
+    <p>
       <input type="submit" value="Login" />
+      <input type="hidden" name="next" value="{% url 'about' %}"/>
     </p>
 </form>
 {% endblock %}

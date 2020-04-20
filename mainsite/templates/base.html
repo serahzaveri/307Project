@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--meta tags-->
+	<!--meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--end meta tags-->
@@ -28,13 +28,14 @@
 	<section>
 				<nav class="base">
 				<ul class="basenav">
-					<li><a href = "home">Home</a></li>
-					<li><a href="about">About</a></li>
-					<li><a href="signup">Register</a></li>
-					<li><a href="login">Login</a></li>
-					<li><a href="logout">Logout</a></li>
-					<li><a href="buy">Buy</a></li>
-					<li><a href="sell">Sell</a></li>
+					<li><a href="{% url 'home' %}">Home</a></li>
+					<li><a href="{% url 'about' %}">About</a></li>
+					<li><a href="{% url 'signup' %}">Register</a></li>
+					<li><a href="{% url 'login' %}">Login</a></li>
+					<li><a href="{% url 'logout' %}">Logout</a></li>
+					<li><a href="{% url 'buy' %}">Buy</a></li>
+					<li><a href="{% url 'create' %}">Sell</a></li>
+					<li><a href="{% url 'home2' %}">home2</a></li>
 				</ul>
 			</nav>
 	</section>

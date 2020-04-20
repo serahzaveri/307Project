@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style type="text/css">
+
+	@media (max-width: 100px) { 
+		.right-column{
+			margin-left: 0px;
+		}
+	}
+
+	@media (min-width: 100px) { 
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+
+	.item-post-container{
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+
+	.left-column{
+		padding:0px;
+	}
+
+	.right-column{
+		padding:0px;
+	}
+	.lead{
+		font-size: 17px;
+	}
+</style>
+
+
+<!-- main content -->
+	<div class="header-area">
+	<div class="text-center">
+		<h1 class="header-words">Homepage</h1>
+	</div>
+</div>
+<div class="container">
+<link href="{% static 'css/base_styles.css' %}" rel="stylesheet">
+	<div class="row">
+
+		<!-- item feed -->
+		<div class="left-column col-lg-7 offset-lg-1">
+
+			
+
+			<!-- Item posts-->
+			{% if item_posts %}
+				{% for post in item_posts %}
+					<div class="item-post-container">
+						{% include 'item_post_snippet.html' with item_post=post %}
+					</div>
+				{% endfor %}
+			{% else %}
+				<div class="item-post-container">
+					{% include 'item_post_snippet.html' with query=query %}
+				</div>
+			{% endif %}
+			<!-- End Item posts-->
+
+		<!-- Pagination post.image.url	-->	
+		{% include 'item_post_pagination.html' with item_posts=item_posts %}
+
+		
+
+
+
+
+	</div>
+</div>
+
+{% endblock content %}
+
+
+

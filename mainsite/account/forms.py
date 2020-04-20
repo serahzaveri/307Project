@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from account.models import ItemPost 
 
 class SignupForm(forms.Form):
     username = forms.CharField()
@@ -19,3 +20,29 @@ class SignupForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField()
+
+
+class CreateItemPostForm(forms.ModelForm):
+
+    class Meta:
+        model = ItemPost
+        fields = ['title', 'body', 'price', 'inventory', 'image']
+
+
+class UpdateItemPostForm(forms.ModelForm):
+
+    class Meta:
+        model = ItemPost
+        fields = ['title', 'body', 'price', 'inventory', 'image']
+
+    def save(self, commit=True):
+        item_post = self.instance
+        item_post.title = self.cleaned_data['title']
+        item_post.body = self.cleaned_data['body']
+
+        if self.cleaned_data['image']:
+            item_post.image = self.cleaned_data['image']
+
+        if commit:
+            item_post.save()
+        return item_post
