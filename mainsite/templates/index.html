@@ -8,15 +8,29 @@
     <meta charset="utf-8"/>
     <title>Chat Rooms</title>
 </head>
+<style type="text/css">
+    section {
+        margin-top: 20px;
+    }
+    input {
+        margin: 20px;
+    }
+</style>
+<div class="header-area">
+  <div class="text-center">
+    <h1 class="header-words">Chat Room for Help<br> {{ room_name }}</h1>
+  </div>
+</div>
 <body>
-    
-    Type price for questions about price<br/>
-    Type shipping for questions about shipping<br/>
-    Type quality for questions about quality of product<br/>
-    Type other for questions not related to any of the above<br/> <br/>
-    What chat room would you like to enter?<br/>
+    <section>
+    Type <i>price </i> for questions about price<br/>
+    Type <i>shipping </i> for questions about shipping<br/>
+    Type <i>quality </i>  for questions about quality of product<br/>
+    Type <i>other </i> for questions not related to any of the above<br/> <br/>
+    Which chat room would you like to enter?<br/>
     <input id="room-name-input" type="text" size="100"/><br/>
     <input id="room-name-submit" type="button" value="Enter"/>
+    </section>
 
     <script>
         document.getElementById('room-name-input').focus();

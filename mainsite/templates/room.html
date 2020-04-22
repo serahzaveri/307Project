@@ -8,10 +8,23 @@
     <meta charset="utf-8"/>
     <title>Chat</title>
 </head>
+<style type="text/css">
+    textarea {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    input {
+        margin-bottom: 25px;
+    }
+</style>
+<div class="header-area">
+  <div class="text-center">
+    <h1 class="header-words">Chat Room for <br> {{ room_name }}</h1>
+  </div>
+</div>
 <body>
-
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
-    <input id="chat-message-input" type="text" size="100"/><br/>
+    <textarea id="chat-log" cols="100" rows="15" placeholder="Welcome to the chatroom! This area displays your conversation."></textarea><br/>
+    <input id="chat-message-input" type="text" size="100" placeholder="Chat here!"/><br/>
     <input id="chat-message-submit" type="button" value="Send"/>
 </body>
 <script>

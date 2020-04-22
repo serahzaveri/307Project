@@ -1,17 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style type="text/css">
+	div {
+  		padding-top: 50px;
+  		padding-right: 30px;
+  		padding-bottom: 50px;
+  		padding-left: 80px;
+	}
+	ul {
+		list-style-type: none;
+	}
+</style>
 <div class="header-area">
   <div class="text-center">
     <h1 class="header-words">About</h1>
   </div>
 </div>
 <body>
-<h2> Meet the team</h2>
-<ul>
+<div class="col" style="background-color: navy">
+<h2 class="text-center" style="color: white"> Meet the team</h2>
+<ul class="text-center" style="color: #BDBDBD">
     <li>Sorato Doken</li>
     <li>Doris Zhang</li>
     <li>Serah Zaveri</li>
 </ul> 
+<h2 class="text-center" style="color: white"> Purpose of this Website</h2>
+<ul class="text-center" style="color: #BDBDBD">
+    <li>This is a marketplace to sell/buy clothes (or anything!) at your convenience</li>
+    <li>Please log in or signup to use our service.</li>
+    <li>Thank you! Below is our github link:</li>
+    <li><a href="https://github.com/serahzaveri/307Project.git" style="color: beige"> Visit our COMP307 Project (clone link) </a>
+</ul> 
+</div>
 </body>
 {% endblock %}

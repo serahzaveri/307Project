@@ -11,6 +11,11 @@
   <title>Browse & Buy</title>
 
   <link rel="stylesheet" href="{% static 'css/base_styles.css' %}"> 
+  <style type="text/css">
+    .product-row {
+      margin: 20px;
+    }
+  </style>
 </head>
 
 <!-- NAVBAR -->
@@ -45,11 +50,11 @@
   <section>
     <div class="header-area">
       <div class="text-center">
-        <h1 class="header-words">Shop by Category</h1>
+        <h1 class="header-words">Shop & Browse</h1>
       </div>
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Shop by Category</li>
+          <li class="breadcrumb-item"><a href="home">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Shop & Browse</li>
         </ul>
     </div>
   </section>
@@ -116,7 +121,7 @@
  
           <div class="col-md-7 col-lg-8 col-xl-9">
           <section>
-            <div class="row">
+            <div class="product-row">
                   <div class="left-column col-lg-7 offset-lg-1">
 
                     {% if item_posts %}
@@ -220,8 +225,7 @@
                     <b>Phone Number</b>
                   </p>
                   <p>
-                    +123 456 7890 <br>
-                    +123 456 7890
+                    +123 456 7890 (not our actual number)
                   </p>
     
                   <p class="sm-head">
@@ -229,7 +233,7 @@
                   </p>
                   <p>
                     something@gmail.com <br>
-                    www.something.com
+                    www.something.com (not actual email or website)
                   </p>
                 </div>
               </div>
