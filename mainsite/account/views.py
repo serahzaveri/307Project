@@ -15,6 +15,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from account.models import ItemPost
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 # Create your views here.
 
@@ -67,6 +69,12 @@ def do_login(request):
     return render(request, 'login.html', context)
 
 def do_logout(request):
+    if request.user.is_authenticated:
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(request.user.username, {
+            'type': 'logout_message',
+            'message': 'Disconnecting. You logged out from another browser or tab.'})
+
     logout(request)
     return HttpResponseRedirect(reverse('login'))
 

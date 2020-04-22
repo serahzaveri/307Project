@@ -28,7 +28,6 @@ urlpatterns = [
     path('<slug>', views.detail_item_view, name="detail"),
     path('<slug>/edit', views.edit_item_view, name="edit"),
     path('<int:pk>/delete', PostDelete.as_view(), name='delete'),
-
 ]
 
 #this code will allow for updates to static files to be viewed immediately by reloading the page
