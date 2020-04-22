@@ -22,12 +22,15 @@
 			<img class="card-img-top" src="{{item_post.image.url}}">
 			<div class="card-body mt-2 mb-2">
 			  <h2 class="card-title">{{item_post.title}}</h2>
-			  <p class="card-text">{{item_post.price|safe}}</p>
+			  <p class="card-text">${{item_post.price|safe}}</p>
 			  <p class="card-text">{{item_post.inventory|safe}}</p>
 			  <p class="card-text">{{item_post.body|safe}}</p>
 			  {% if item_post.author == request.user %}
 			  	<a href="{% url 'edit' item_post.slug %}" class="btn btn-primary">Update</a>
+			  	<a href="{% url 'delete' item_post.pk %}" class="btn btn-primary">Delete</a>
 			  {% endif %}
+				<a href="{% url 'add-cart' item_post.slug %}" class="btn btn-primary">Add to Cart</a>
+				<a href="{% url 'remove-cart' item_post.slug %}" class="btn btn-primary">Remove from Cart</a>
 			</div>
 			<div class="card-footer text-muted">
 			  Updated on {{item_post.date_updated}} by {{item_post.author}}

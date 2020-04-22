@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Your Shopping Cart| Thank you
+{% endblock %}
+
+{% block content %}
+    <div class="header-area">
+        <div class="text-center">
+            <h1 class="header-words">Checkout Complete</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-top: 6%">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="page-header">Thank You For Shopping With Us!
+                </h3>
+                <p>Your order has been successfully completed. Your order number is <strong>{{ checkout.id }}</strong>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

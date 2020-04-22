@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="header-area">
+	<div class="text-center">
+		<h1 class="header-words">Search Results</h1>
+	</div>
+</div>
+<div>
+	<ul>
+	{% for result in results %}
+		<div class="item-post-container">
+			{% include 'item_post_snippet.html' with item_post=result %}
+		</div>
+	{% endfor %}
+	</ul>
+</div>
+{% endblock %}

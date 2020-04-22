@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from account.models import ItemPost 
+from account.models import ItemPost, Checkout
 
 class SignupForm(forms.Form):
     username = forms.CharField()
@@ -46,3 +46,8 @@ class UpdateItemPostForm(forms.ModelForm):
         if commit:
             item_post.save()
         return item_post
+
+class OrderCreateForm(forms.ModelForm):
+    class Meta:
+        model = Checkout
+        fields = ['first_name', 'last_name', 'email', 'address', 'postal_code', 'city']

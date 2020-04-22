@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {% block content %}
-
+<!-- additional styling css -->
 <style type="text/css">
 
 	@media (max-width: 100px) { 
@@ -41,20 +39,32 @@
 
 
 <!-- main content -->
-	<div class="header-area">
+<div class="header-area">
 	<div class="text-center">
 		<h1 class="header-words">Homepage</h1>
 	</div>
 </div>
 <div class="container">
+<!-- link to custom css -->
 <link href="{% static 'css/base_styles.css' %}" rel="stylesheet">
+	<!-- search bar -->
+	<div>
+		<form action="{% url 'search' %}" method="GET">
+  		<input name="q" type="text" placeholder="Search...">
+		</form>
+	</div>
+	<!-- show messages -->
+	{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+	<!-- end show messages -->
 	<div class="row">
-
-		<!-- item feed -->
+		<!-- Item feed -->
 		<div class="left-column col-lg-7 offset-lg-1">
-
-			
-
 			<!-- Item posts-->
 			{% if item_posts %}
 				{% for post in item_posts %}
@@ -62,23 +72,14 @@
 						{% include 'item_post_snippet.html' with item_post=post %}
 					</div>
 				{% endfor %}
-			{% else %}
-				<div class="item-post-container">
-					{% include 'item_post_snippet.html' with query=query %}
-				</div>
 			{% endif %}
 			<!-- End Item posts-->
 
 		<!-- Pagination post.image.url	-->	
 		{% include 'item_post_pagination.html' with item_posts=item_posts %}
-
-		
-
-
-
-
+		</div>
+		<!-- End item feed -->
 	</div>
-</div>
 </div>
 
 {% endblock content %}

@@ -29,15 +29,15 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="navbarDropdown">Shop Products</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category">Shop by Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart">Your Cart</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout">Checkout Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'cart' %}">Your Cart</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'checkout' %}">Checkout Product</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Sell Products</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="create">Sell New Items</a></li>
-                  <li class="nav-item"><a class="nav-link" href="edit">Modify Listings</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'create' %}">Sell New Items</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'edit' %}">Modify Listings</a></li>
                 </ul>
             </ul>
           </div>
@@ -53,7 +53,7 @@
         <h1 class="header-words">Shop & Browse</h1>
       </div>
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a href="home">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'home2' %}">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">Shop & Browse</li>
         </ul>
     </div>

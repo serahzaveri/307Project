@@ -7,6 +7,15 @@
   </div>
 </div>
 <div>{{ form.non_field_errors }}</div>
+<div>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+</div>
 <form action="" method="post">
     {% csrf_token %}
     <p>

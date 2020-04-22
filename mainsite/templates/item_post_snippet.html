@@ -13,20 +13,22 @@
 	<div class="row">
 		<!-- Item Post -->
 		<div class="card m-auto">
-			<a href="{% url 'detail' post.slug %}">
+			<a href="{% url 'detail' item_post.slug %}"> 
 				<img class="card-img-top" src="{{item_post.image.url}}">
 			</a>
 			<div class="card-body mt-2 mb-2">
-				<a href="{% url 'detail' post.slug %}">
+				<a href="{% url 'detail' item_post.slug %}"> 
 					<h2 class="card-title">{{item_post.title}}</h2>
 				</a>
 				<p class="card-text">{{item_post.body|safe|truncatechars:180}}</p>
-				<p class="card-text">Price: {{item_post.price}}</p>
+				<p class="card-text">Price: ${{item_post.price}}</p>
 				<p class="card-text">Inventory: {{item_post.inventory}}</p>
 				{% if item_post.author == request.user %}
 					<a href="{% url 'edit' item_post.slug %}" class="btn btn-primary">Update</a>
 					<a href="{% url 'delete' item_post.pk %}" class="btn btn-primary">Delete</a>
 				{% endif %}
+				<a href="{% url 'add-cart' item_post.slug %}" class="btn btn-primary">Add to Cart</a>
+				<a href="{% url 'remove-cart' item_post.slug %}" class="btn btn-primary">Remove from Cart</a>
 			</div>
 			<div class="card-footer text-muted">
 			  Updated on {{item_post.date_updated}} by {{item_post.author}}
