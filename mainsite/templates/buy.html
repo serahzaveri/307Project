@@ -135,53 +135,7 @@
                         {% include 'item_post_snippet.html' with query=query %}
                       </div>
                     {% endif %}
-
-
-
-  <!-- Code for 3x3 row & columns in a row not working :/
-
-                  {% if item_posts %}
-                   {% for item in item_posts %}
-
-                  <div class="card text-center card-product">
-
-                      {% if item_post %}
-                      <div class="container">
-                      <div class="row">
-                      <div class="card m-auto">
-
-                        <a href="{% url 'detail' post.slug %}">
-                          <img class="card-img-top" src="{{ item_post.image.url }}" alt="{{ item_post.title }}">
-                        </a>
-
-                      <div class="card-body mt-2 mb-2">
-                        <p class="card-text">{{ item_post.inventory }}</p>
-                        <h4><a href="{% url 'detail' post.slug %}">{{ item_post.title }}</a></h4>
-                        <p class="card-text">{{ item_post.price }}</p>
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      {% endif %}
-
-                  </div>
-                
-                  {% endfor %}
-              
-                {% else %}
-                  <div class="item-post-container">
-                    {% include 'item_post_snippet.html' with query=query %}
-                  </div>
-                {% endif %}
-                </div>
-          </div>
-        </section>
-      -->
-        
-
-
         </div>
-
       </div>
     </div>
   </section>

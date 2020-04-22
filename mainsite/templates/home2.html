@@ -35,6 +35,9 @@
 	.lead{
 		font-size: 17px;
 	}
+	.search-bar{
+		margin: 20px;
+	}
 </style>
 
 
@@ -48,7 +51,7 @@
 <!-- link to custom css -->
 <link href="{% static 'css/base_styles.css' %}" rel="stylesheet">
 	<!-- search bar -->
-	<div>
+	<div class="search-bar">
 		<form action="{% url 'search' %}" method="GET">
   		<input name="q" type="text" placeholder="Search...">
 		</form>
@@ -64,7 +67,7 @@
 	<!-- end show messages -->
 	<div class="row">
 		<!-- Item feed -->
-		<div class="left-column col-lg-7 offset-lg-1">
+		<div class="col-lg-8 offset-lg-2" align="center">
 			<!-- Item posts-->
 			{% if item_posts %}
 				{% for post in item_posts %}
