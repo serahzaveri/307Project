@@ -30,8 +30,29 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def buy(request):
-    return render(request, 'buy.html')
+def buy(request, *args, **kwargs):
+    context = {}
+
+    # Search
+    query = ""
+    if request.GET:
+        query = request.GET.get('q', '')
+        context['query'] = str(query)
+
+    item_posts = sorted(get_item_queryset(query), key=attrgetter('date_updated'), reverse=True)
+    
+    # Pagination
+    page = request.GET.get('page', 1)
+    item_posts_paginator = Paginator(item_posts, item_POSTS_PER_PAGE)
+    try:
+        item_posts = item_posts_paginator.page(page)
+    except PageNotAnInteger:
+        item_posts = item_posts_paginator.page(item_POSTS_PER_PAGE)
+    except EmptyPage:
+        item_posts = item_posts_paginator.page(item_posts_paginator.num_pages)
+
+    context['item_posts'] = item_posts
+    return render(request, 'buy.html', context)
 
 def signup(request):
     context = {}
