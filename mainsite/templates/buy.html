@@ -5,19 +5,11 @@
 <!DOCTYPE html>
 <html>
 
-<!-- style should be in separate css in static folder but load static not working for some reason -> fixed! -->
-
-
-<!-- HEADER: CONTAINS CSS PATH -->
-
-<head>	
+<head>  
   <!-- bootstrap moved to base.html-->
 
-  <!-- could use a better title-->
-  <title>Buyer's HomePage</title>
+  <title>Browse & Buy</title>
 
-  <!-- this could also just use base_styles.css, but ideally buy/style.css will include the stylecode from above
-        -> for now, I have merged all the css together into base_styles.css-->
   <link rel="stylesheet" href="{% static 'css/base_styles.css' %}"> 
 </head>
 
@@ -35,12 +27,12 @@
                   <li class="nav-item"><a class="nav-link" href="cart">Your Cart</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout">Checkout Product</a></li>
                 </ul>
-			        </li>
+              </li>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Sell Products</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="sell">Sell New Items</a></li>
-                  <li class="nav-item"><a class="nav-link" href="listings">Track Inventory/Modify Listings</a></li>
+                  <li class="nav-item"><a class="nav-link" href="create">Sell New Items</a></li>
+                  <li class="nav-item"><a class="nav-link" href="edit">Modify Listings</a></li>
                 </ul>
             </ul>
           </div>
@@ -50,17 +42,17 @@
   </header>
 
 <!-- HEADER AREA + breadcrumbs -->
-	<section>
-		<div class="header-area">
-			<div class="text-center">
-				<h1 class="header-words">Shop by Category</h1>
-			</div>
-				<ul class="breadcrumb">
-				  <li class="breadcrumb-item"><a href="#">Home</a></li>
-				  <li class="breadcrumb-item active" aria-current="page">Shop by Category</li>
-				</ul>
-		</div>
-	</section>
+  <section>
+    <div class="header-area">
+      <div class="text-center">
+        <h1 class="header-words">Shop by Category</h1>
+      </div>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Shop by Category</li>
+        </ul>
+    </div>
+  </section>
 
 <!-- FILTERS: This part could have more categories/brands as the inventory grows but we could also just cap it? -->
   <section class="fitlers">
@@ -73,7 +65,7 @@
               <ul>
                 <li><input type="radio" id="men" name="category"><label for="men">Men</label></li>
                 <li><input type="radio" id="women" name="category"><label for="women">Women</label></li>
-                <li><input type="radio" id="accessories" name="category"><label for="accessories">Accessories</label></li>	
+                <li><input type="radio" id="accessories" name="category"><label for="accessories">Accessories</label></li>  
                 <li><input type="radio" id="other" name="category"><label for="other">Other</label></li>
               </ul>
             </form>
@@ -105,146 +97,150 @@
               <div class="head">Price</div>
               <div class="price-range-area">
               <div id="price-range"></div>
-              	<div class="rangeslider"> 
-              	<ul>
-              		<li class="filter-list">
-  					<input type="range" min="10" max="5000" value="10" step="10" class="myslider" id="sliderRange"> 
-  					<p>Under $<span id="dollars"></span></p></li>
-				</ul>
-				</div> 
+                <div class="rangeslider"> 
+                <ul>
+                  <li class="filter-list">
+            <input type="range" min="10" max="5000" value="10" step="10" class="myslider" id="sliderRange"> 
+            <p>Under $<span id="dollars"></span></p></li>
+        </ul>
+        </div> 
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-7 col-lg-8 col-xl-9">
+        
+
+        
 
 <!-- PRODUCTS SECTION: Django tags should be implemented for backend. SHOULD show 9 products in given space, BUT will need to put in custom template tags to break the for loop at 9 items, and create pagination -->
-<!-- Things to implement:
-  list of products from db:
-    product_list
-  item with fields:
-    item.image
-    item.name
-    item.get_absolute_url
-    item.price
-  Warnings:
-    {{ MEDIA }}{{ item.image.url }} is a relative path, may work with /{{ MEDIA }}{{ item.image.url }} 
-  -->
+ 
+          <div class="col-md-7 col-lg-8 col-xl-9">
           <section>
             <div class="row">
-              {% for item in product_list %}
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div>
-                    <img class="card-img" src="{{ MEDIA_URL }}{{ item.image.url }}" alt="{{ item.name }}">
+                  <div class="left-column col-lg-7 offset-lg-1">
+
+                    {% if item_posts %}
+                    {% for post in item_posts %}
+                    <div class="item-post-container">
+                      {% include 'item_post_snippet.html' with item_post=post %}
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                      <div class="item-post-container">
+                        {% include 'item_post_snippet.html' with query=query %}
+                      </div>
+                    {% endif %}
+
+
+
+  <!-- Code for 3x3 row & columns in a row not working :/
+
+                  {% if item_posts %}
+                   {% for item in item_posts %}
+
+                  <div class="card text-center card-product">
+
+                      {% if item_post %}
+                      <div class="container">
+                      <div class="row">
+                      <div class="card m-auto">
+
+                        <a href="{% url 'detail' post.slug %}">
+                          <img class="card-img-top" src="{{ item_post.image.url }}" alt="{{ item_post.title }}">
+                        </a>
+
+                      <div class="card-body mt-2 mb-2">
+                        <p class="card-text">{{ item_post.inventory }}</p>
+                        <h4><a href="{% url 'detail' post.slug %}">{{ item_post.title }}</a></h4>
+                        <p class="card-text">{{ item_post.price }}</p>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      {% endif %}
+
                   </div>
-                  <div class="card-body">
-                    <p>{{ item.category }}</p>
-                    <h4><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h4>
-                    <p>{{ item.price }}</p>
+                
+                  {% endfor %}
+              
+                {% else %}
+                  <div class="item-post-container">
+                    {% include 'item_post_snippet.html' with query=query %}
                   </div>
+                {% endif %}
                 </div>
-              </div>
-              {% endfor %}
-            </div>
-          </section>
+          </div>
+        </section>
+      -->
+        
+
+
         </div>
+
       </div>
     </div>
   </section>
 
 <!-- Implement pagination here -->
-<!-- sample code looks like this:
-  {% if is_paginated %}
-      <nav class="d-flex justify-content-center wow fadeIn">
-        <ul class="pagination pg-blue">
-
-          {% if page_obj.has_previous %}
-          <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          {% endif %}
-
-          <li class="page-item active">
-            <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-
-          {% if page_obj.has_next %}
-          <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-          {% endif %}
-        </ul>
-      </nav>
-      {% endif %}
-    -->
+{% include 'item_post_pagination.html' with item_posts=item_posts %}
 
 <!-- Footer section with relative info. Could be a different template?? -->
 
-	<footer>
-		<div class="footer-area">
-			<div class="container">
+  <footer>
+    <div class="footer-area">
+      <div class="container">
         <div class="footer-words">
-  				<div class="row section_gap">
-  					<div>
-  						<div>
-  							<h4 class="footer-words">About Us</h4>
-  							<p class="footer-sub">
-  								This is a market place project for COMP307!
-  							</p>
-  						</div>
-  					</div>
-  					<div class="offset-lg-1 col-lg-3 col-md-6">
-  						<div>
-  							<h4 class="footer-words">Quick Links</h4>
-  							<ul class="footer-list">
-  								<h6><a href="about" class="ft-link">About</a></h6> 
-  								<h6><a href="signup" class="ft-link">Register</a></h6> 
-  								<h6><a href="login" class="ft-link">Login</a></h6> 
-  								<h6><a href="logout" class="ft-link">Logout</a></h6>
-  								<h6><a href="buy" class="ft-link">Buy</a></h6>
-  								<h6><a href="sell" class="ft-link">Sell</a></h6>
-  							</ul>
-  						</div>
-  					</div>
-  					<div class="offset-lg-1 col-lg-3 col-md-6">
-  						<div>
-  							<h4 class="footer-words">Contact Us</h4>
-  							<div class="footer-sub">
-  								<p class="sm-head">
-  									<b>Phone Number</b>
-  								</p>
-  								<p>
-  									+123 456 7890 <br>
-  									+123 456 7890
-  								</p>
-  	
-  								<p class="sm-head">
-  									<b>Email</b>
-  								</p>
-  								<p>
-  									something@gmail.com <br>
-  									www.something.com
-  								</p>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
+          <div class="row section_gap">
+            <div>
+              <div>
+                <h4 class="footer-words">About Us</h4>
+                <p class="footer-sub" style="color:#BDBDBD">
+                  This is a market place project for COMP307!
+                </p>
+              </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-6">
+              <div>
+                <h4 class="footer-words">Quick Links</h4>
+                <ul class="footer-list">
+                  <h6><a href="about" class="ft-link">About</a></h6> 
+                  <h6><a href="signup" class="ft-link">Register</a></h6> 
+                  <h6><a href="login" class="ft-link">Login</a></h6> 
+                  <h6><a href="logout" class="ft-link">Logout</a></h6>
+                  <h6><a href="buy" class="ft-link">Buy</a></h6>
+                  <h6><a href="sell" class="ft-link">Sell</a></h6>
+                </ul>
+              </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-6">
+              <div>
+                <h4 class="footer-words">Contact Us</h4>
+                <div class="footer-sub" style="color: #BDBDBD">
+                  <p class="sm-head">
+                    <b>Phone Number</b>
+                  </p>
+                  <p>
+                    +123 456 7890 <br>
+                    +123 456 7890
+                  </p>
+    
+                  <p class="sm-head">
+                    <b>Email</b>
+                  </p>
+                  <p>
+                    something@gmail.com <br>
+                    www.something.com
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-			</div>
-		</div>
-	</footer>
+      </div>
+    </div>
+  </footer>
 </body>
 
-<!-- rest of bootstrap code also could be part of a different template? // moved to base.html -->
 
 <!-- range slider code for price -->
 <script> 
@@ -253,7 +249,7 @@ var output = document.getElementById("dollars");
 output.innerHTML = rangeSlider.value; 
   
 rangeSlider.oninput = function() { 
-  	output.innerHTML = this.value;
+    output.innerHTML = this.value;
 } 
 </script>
 
