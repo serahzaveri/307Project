@@ -384,7 +384,7 @@ def checkout_create(request):
             order = orders[0]
     else:
         messages.warning(request, "Your cart is empty. You must add an item to your cart.")
-        return redirect ("home2")
+        return redirect ("buy")
 
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
