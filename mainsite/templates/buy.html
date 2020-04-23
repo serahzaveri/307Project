@@ -29,7 +29,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="navbarDropdown">Shop Products</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="cart">Your Cart</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout">Checkout Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="checkout">Checkout Products</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -51,6 +51,15 @@
       <div class="text-center">
         <h1 class="header-words">Shop & Browse</h1>
       </div>
+      <!-- show messages -->
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      <!-- end show messages -->
         <ul class="breadcrumb">
           <li class="breadcrumb-item"><a href="home">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">Shop & Browse</li>
@@ -117,7 +126,7 @@
         
 
 <!-- PRODUCTS SECTION: Django tags should be implemented for backend. SHOULD show 9 products in given space, BUT will need to put in custom template tags to break the for loop at 9 items, and create pagination -->
- 
+  
           <div class="col-md-7 col-lg-8 col-xl-9">
           <section>
             <div class="product-row">

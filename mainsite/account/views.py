@@ -24,9 +24,6 @@ from asgiref.sync import async_to_sync
 def info(request):
     return HttpResponse('Hello ' + request.user.username)
 
-def home(request):
-    return render(request, 'home.html')
-
 def about(request):
     return render(request, 'about.html')
 
@@ -263,7 +260,7 @@ def add_to_cart(request, slug):
     )
     if item.inventory < 1:
         messages.info(request, "Out of stock!")
-        return redirect("home2")
+        return redirect("buy")
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
@@ -272,17 +269,17 @@ def add_to_cart(request, slug):
             order_item.quantity += 1
             order_item.save()
             messages.info(request, f"{item.title} quantity was updated.")
-            return redirect("home2")
+            return redirect("cart")
         else:
             order.orderitems.add(order_item)
             messages.info(request, f"{item.title} was added to your cart.")
-            return redirect("home2")
+            return redirect("cart")
     else:
         order = Order.objects.create(
             user=request.user)
         order.orderitems.add(order_item)
         messages.info(request, f"{item.title} was added to your cart.")
-        return redirect("home2")
+        return redirect("cart")
 
 # Remove entire quantity of an item from cart
 
@@ -328,14 +325,13 @@ def CartView(request):
 
     carts = Cart.objects.filter(user=user, purchased=False)
     orders = Order.objects.filter(user=user, ordered=False)
-    order = orders[0]
 
     if carts.exists():
         if orders.exists():
             order = orders[0]
     else:
         messages.warning(request, "Your cart is empty. You must add an item to your cart.")
-        return redirect ("home2")
+        return redirect ("buy")
     
     context = {
         'carts': carts,
@@ -388,14 +384,13 @@ def checkout_create(request):
 
     carts = Cart.objects.filter(user=user, purchased=False)
     orders = Order.objects.filter(user=user, ordered=False)
-    order = orders[0]
 
     if carts.exists():
         if orders.exists():
             order = orders[0]
     else:
         messages.warning(request, "Your cart is empty. You must add an item to your cart.")
-        return redirect ("home2")
+        return redirect ("buy")
 
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
