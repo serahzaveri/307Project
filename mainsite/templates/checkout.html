@@ -32,14 +32,22 @@
                 <div class="page-header">
                     Your Order
                 </div>
-                <ul class="list-group">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     {% for cart in carts %}
                     <tr>
                       <th scope="row">{{ forloop.counter }}</th>
-                      <td>{{ cart.item.title }}</td>
+                      <td>{{ cart.item.title }} </td>
                       <td>
                       {{ cart.quantity }}
-                      <a class="ml-2" href="{% url 'add-cart' cart.item.slug %}" ><span class="badge badge-light"><i class="fas fa-plus"></i></span></a>
                       </td>
                       <td>${{ cart.get_total }}</td>
                     </tr>
@@ -49,8 +57,8 @@
                       <td colspan="2">Total</td>
                       <td>${{ order.get_totals| floatformat:2 }}</td>
                     </tr>
-                </ul>
-
+                  </tbody>
+              </table>
             </div>
         </div>
     </div>
