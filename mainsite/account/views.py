@@ -185,7 +185,7 @@ class SearchResultsView(TemplateView):
     def get_context_data(self, **kwargs):
         return super().get_context_data(results=self.results, **kwargs)
 
-#item queryset to use for homs_screen_view, sorting posts
+#item queryset to use for home_screen_view, sorting posts
 
 def get_item_queryset(query=None):
     queryset = []
@@ -252,15 +252,15 @@ def add_to_cart(request, slug):
         messages.warning(request, "You must login to view that page.")
         return redirect ("login")
 
-    item = get_object_or_404(ItemPost, slug=slug)    
+    item = get_object_or_404(ItemPost, slug=slug) 
+    if item.inventory < 1:
+        messages.info(request, "Out of stock!")
+        return redirect("buy")   
     order_item, created = Cart.objects.get_or_create(
         item=item,
         user=user,
         purchased=False
     )
-    if item.inventory < 1:
-        messages.info(request, "Out of stock!")
-        return redirect("buy")
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
