@@ -22,8 +22,7 @@ from account.views import (
 
 
 urlpatterns = [
-	path('', views.home, name='home'),
-    path('home', views.home, name='home'),
+    path('', home_screen_view, name='home2'),
     path('home2', home_screen_view, name='home2'),
     path('', views.info, name='acc_info'),
     path('signup', views.signup, name='signup'),
