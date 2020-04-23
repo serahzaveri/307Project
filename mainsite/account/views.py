@@ -93,9 +93,15 @@ def do_login(request):
     return render(request, 'login.html', context)
 
 def do_logout(request):
+    if request.user.is_authenticated:
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(request.user.username, {
+            'type': 'logout_message',
+            'message': 'Disconnecting. You logged out from another browser or tab.'})
 
     logout(request)
     return HttpResponseRedirect(reverse('login'))
+
 
 #create an item post
 

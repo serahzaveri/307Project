@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style type="text/css">
+  p {
+    margin: 20px;
+  }
+</style>
 <div class="header-area">
   <div class="text-center">
     <h1 class="header-words">Login</h1>
@@ -22,7 +27,7 @@
       Username: <input type="text" name="username" />
       {{ form.username.errors }}
     </p>
-      Password: <input type="password" name="password" />
+    <p>      Password: <input type="password" name="password" />
       {{ form.password.errors }}
     </p>
     <p>
