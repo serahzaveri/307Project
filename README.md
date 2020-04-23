@@ -21,8 +21,8 @@ Sorato Doken 260737815
 
 
 How to run:
-$pip install pillow
-$python manage.py makemigrations
-$python manage.py migrate
-$python manage.py test
-$python manage.py runserver
+1. $pip install pillow
+2. $python manage.py makemigrations
+3. $python manage.py migrate
+4. $python manage.py test
+5. $python manage.py runserver
